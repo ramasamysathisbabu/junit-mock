@@ -1,6 +1,7 @@
 package com.example.business;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -21,9 +22,9 @@ public class TodoBusinessImplMockTest {
 
 		List<String> todoList = Arrays.asList("Learn Spring MVC", "Learn Spring", "Learn Python");
 
-		when(mockTodoService.retrieveTodo("DummyUser")).thenReturn(todoList);
+		when(mockTodoService.retrieveTodo(anyString())).thenReturn(todoList);
 
-		List<String> springList = todoBusinessImpl.retreieveTodosRelatedToSpring("DummyUser");
+		List<String> springList = todoBusinessImpl.retreieveTodosRelatedToSpring(anyString());
 		assertEquals(2, springList.size());
 	}
 
@@ -34,10 +35,9 @@ public class TodoBusinessImplMockTest {
 		TodoBusinessImpl todoBusinessImpl = new TodoBusinessImpl(mockTodoService);
 
 		List<String> todoList = Arrays.asList();
-		when(mockTodoService.retrieveTodo("someUser")).thenReturn(todoList);
+		when(mockTodoService.retrieveTodo(anyString())).thenReturn(todoList);
 
-		List<String> springList = todoBusinessImpl.retreieveTodosRelatedToSpring("someUser");
+		List<String> springList = todoBusinessImpl.retreieveTodosRelatedToSpring(anyString());
 		assertEquals(0, springList.size());
-
 	}
 }
